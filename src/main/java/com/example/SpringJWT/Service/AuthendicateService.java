@@ -41,13 +41,21 @@ public class AuthendicateService {
     }
 
     public String login(UsersDB user) {
-        manager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        user.getUsername(),
-                        user.getPassword()
+        try
+        {
+            manager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            user.getUsername(),
+                            user.getPassword()
 
-                                )
-        );
+                    )
+            );
+        }catch (Exception ex)
+        {
+            throw ex;
+        }
+
+
         UsersDB user1=repository.findByUsername(user.getUsername()).get();
         String jwtToken = jwtService.generateToken(user);
         return jwtToken;

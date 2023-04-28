@@ -1,6 +1,7 @@
 package com.example.SpringJWT.Config;
 
 import com.example.SpringJWT.Entity.UserRepository;
+
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
-public class ApplicationConfig {
+public class ApplicationConfig  {
 
     @Autowired
     UserRepository repository;
+
+
     @Bean
     public UserDetailsService userDetailsService()
     {
@@ -43,4 +50,8 @@ public class ApplicationConfig {
     {
         return new BCryptPasswordEncoder();
     }
+
+
+
+
 }
